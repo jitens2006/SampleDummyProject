@@ -1,0 +1,68 @@
+// Sample Java Project No Springboot
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'jacoco'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+configurations 
+{
+	// configuration that holds jars to include in the jar
+	extraLibs
+}
+
+// Option of using maven with URL or  jcenter()
+repositories 
+{
+	mavenLocal()
+//	mavenCentral()  -- Does not work
+    maven 
+    {
+          url "https://plugins.gradle.org/m2"
+    }
+}
+
+dependencies {
+	// implementation 'org.springframework.boot:spring-boot-dependencies:1.5.6.RELEASE'
+	// compile("org.springframework.ws:spring-ws-core")
+	compile('ch.qos.logback.contrib:logback-json-classic:0.1.5')
+    
+    // From outside repo
+    // compile('commons-lang:commons-lang:2.2')
+	
+	// From Individual Jar which cannot be downloaded
+	// Presently this file cannot be downloaded from Jcenter or Maven with URL
+	compile files('./lib/ucp-1.jar')
+	compile files('./lib/ojdbc-6.jar')
+	
+	// For Multiple Jars in lib directory inside Project
+	// compile fileTree(dir: 'lib', include: '*.jar') // -- Works fine --
+	
+	// For embedding dependents jars into main jar 
+	extraLibs fileTree(dir: 'lib', include: '*.jar')    // -- Works fine --
+    //extraLibs files('C:/Users/133692/Desktop/libs/ucp-1.jar')
+    //extraLibs files('C:/Users/133692/Desktop/libs/ucp-1.jar')
+    
+	/* Setting for embedding jars */
+    configurations.compile.extendsFrom(configurations.extraLibs)
+}
+
+jar {
+	baseName = rootProject.name
+	from { configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) } }
+	    manifest {
+        attributes 'Main-Class': 'sample.dummy.Testing'
+    }
+}
+
+eclipse {
+	classpath {
+		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER*')
+		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER'
+	}
+}
+
+

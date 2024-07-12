@@ -1,0 +1,68 @@
+// Old Legacy way of Creating File
+/*  
+buildscript {
+	ext {
+		springBootVersion = '1.5.4.RELEASE'
+	}
+	repositories {
+	mavenLocal()
+		maven {
+        url "https://plugins.gradle.org/m2/"
+    } 
+}  
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath('org.owasp:dependency-check-gradle:3.1.1')
+	}
+}
+*/
+
+// New Way of defining Plugins
+plugins {
+  id "org.springframework.boot" version "1.5.6.RELEASE"
+  id "org.owasp.dependencycheck" version "3.1.1"
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'jacoco'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'org.owasp.dependencycheck'
+
+// sourceCompatibility = compatibility
+// targetCompatibility = compatibility
+
+configurations {
+	// configuration that holds jars to include in the jar
+	extraLibs
+}
+
+repositories {
+	mavenLocal()
+    maven {
+          url "https://plugins.gradle.org/m2"
+    }
+}
+
+
+dependencies {
+   implementation 'org.springframework.boot:spring-boot-dependencies:1.5.6.RELEASE'
+   compile("org.springframework.ws:spring-ws-core")
+   compile('commons-lang:commons-lang:2.2')
+   compile files('C:/Users/133692/Desktop/libs/ucp-1.jar')
+//   compile('ch.qos.logback.contrib:logback-json-classic:0.1.5')
+//   compile('ch.qos.logback.contrib:logback-json-core')
+/*   compile('ch.qos.logback.contrib:logback-jackson')
+*/
+}
+
+
+eclipse {
+	classpath {
+		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER*')
+		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER'
+	}
+}
+
+
