@@ -10,6 +10,6 @@ public class Testing {
 		System.out.println("Testingffffzxz     sssssssssssssxzxxzxzxzxzxf");
 		System.out.println("Testingffffzxz    sssssssssssssxzxxzxzxzxzxf");
 		System.out.println("Testingxccxcxc    xcxi             ngsdsds");
-		System.out.println("Only specific file");
+		System.out.println("Only specific files");
 	}
 }
