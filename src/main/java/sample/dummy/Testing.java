@@ -8,8 +8,5 @@ public class Testing {
 		// TODO Auto-generated method stub
 		PoolDataSource dataSource = PoolDataSourceFactory.getPoolDataSource();
 		System.out.println("Testingffffzxz     sssssssssssssxzxxzxzxzxzxf");
-		System.out.println("Testingffffzxz    sssssssssssssxzxxzxzxzxzxfffffffffffffffffffffffffffffff");
-		System.out.println("Testingxccxcxc    xcxi             ngsdsds");
-		System.out.println("2");
 	}
 }
