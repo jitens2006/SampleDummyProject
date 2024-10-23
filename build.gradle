@@ -4,7 +4,8 @@ apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: 'jacoco'
 
-sourceCompatibility = 1.10
+
+sourceCompatibility = 1.14
 targetCompatibility = 1.8
 
 
