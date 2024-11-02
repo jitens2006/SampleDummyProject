@@ -11,5 +11,6 @@ public class Testing {
 		System.out.println("Testingffffzxz    sssssssssssssxzxxzxzxzxzxf");
 		System.out.println("Testingxccxcxc    xcxi             ngsdsds");
 		System.out.println("New Line added");
+		System.out.println("New Line added");
 	}
 }
